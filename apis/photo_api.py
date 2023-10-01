@@ -1,7 +1,12 @@
 """
-Tesint API code for Flickr, to be imported into API server
+Test API code for Flickr, to be imported into API server
+
+XML reference: https://www.tutorialspoint.com/python/python_xml_processing.htm
+
+
 """
 import requests
+import xml.etree.ElementTree as ET
 
 def get_car_images(color, year, make, model):
     search = color + '  "' + year + ' ' + make + ' ' + model +'"'
@@ -9,7 +14,7 @@ def get_car_images(color, year, make, model):
     method = 'flickr.photos.search'
     sort = 'relevance'
     safe_search = 1
-    per_page = 5
+    per_page = 3
     page = 1
 
     url = 'https://www.flickr.com/services/rest/'
@@ -19,8 +24,15 @@ def get_car_images(color, year, make, model):
     try:
         response = requests.get(url, params=payload)
         response.raise_for_status()
-        data = response.xml()
+
+        data = ET.fromstring(response.content)
+
+        for element in data.findall('.//photo'):
+            print(element.get('title'))
+            print("https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + ".jpg")
+
         return data, None
+
     except Exception as e:
         print(e)
         print(response.text)
