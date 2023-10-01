@@ -5,9 +5,15 @@
 import photo_api
 
 def display_car(car):
-    for photo in car:
-        print(photo['title'])
-        print(photo['link'])        
+
+    if type(car) == str:
+        print(car)
+    elif type(car) == list:
+        for photo in car:
+            print(photo['title'])
+            print(photo['link'])        
+    else:
+        print('serious error occurred')
 
 color = ''
 year = '2012'
@@ -31,6 +37,15 @@ color = ''
 year = '1965'
 make = 'Ford'
 model = 'Mustang'
+
+mustang = photo_api.get_car_images(color, year, make, model)
+
+display_car(mustang)
+
+color = ''
+year = '1900'
+make = 'Tilken'
+model = 'Mustoong'
 
 mustang = photo_api.get_car_images(color, year, make, model)
 

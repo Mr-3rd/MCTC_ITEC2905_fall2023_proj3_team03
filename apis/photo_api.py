@@ -37,7 +37,10 @@ def get_car_images(color, year, make, model):
             photo_links.append({'title': element.get('title'), 
                                 'link': "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + size + ".jpg"})
 
-        return photo_links
+        if len(photo_links) == 0:
+            return 'Car is not found'
+        else:
+            return photo_links
 
     except Exception as e:
         print('An error has occurred: ')
