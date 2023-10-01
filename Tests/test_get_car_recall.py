@@ -17,4 +17,10 @@ class GetCarRecallTest(TestCase):
         self.assertEqual(expected, get_car_recall('fiat', '500', 2012))
 
         
+year = '2012'
+make = 'Fiat'
+model = '500'
 
+count, recalls = get_car_recall(year, make, model)
+print(recalls)
+print(count)
