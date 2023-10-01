@@ -9,6 +9,9 @@ import requests
 import xml.etree.ElementTree as ET
 
 def get_car_images(color, year, make, model):
+
+    photo_links = []
+
     search = color + '  "' + year + ' ' + make + ' ' + model +'"'
     api_key = '69d2a5d3d8d58ff369379c070f274857'
     method = 'flickr.photos.search'
@@ -28,25 +31,12 @@ def get_car_images(color, year, make, model):
         data = ET.fromstring(response.content)
 
         for element in data.findall('.//photo'):
-            print(element.get('title'))
-            print("https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + ".jpg")
+            photo_links.append({'title': element.get('title'), 'link' : "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + ".jpg"})
 
-        return data, None
+        return photo_links, None
 
     except Exception as e:
         print(e)
         print(response.text)
         return None, e
         
-
-color = 'Red'
-year = '2012'
-make = 'Fiat'
-model = '500'
-
-# color = 'Silver'
-# year = '2017'
-# make = 'Toyota'
-# model = 'Camry'
-
-get_car_images(color, year, make, model)
