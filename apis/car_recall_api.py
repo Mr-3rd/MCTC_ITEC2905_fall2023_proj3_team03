@@ -26,6 +26,6 @@ def get_car_recall(year, make, model):
                                    'Summary': recall['Summary'].capitalize()})
         return count, recall_results
         
-    except Exception as ex:
+    except Exception as ex: #todo: make more explicit error handling
         print('Sorry, unable to search car.', ex)
 
