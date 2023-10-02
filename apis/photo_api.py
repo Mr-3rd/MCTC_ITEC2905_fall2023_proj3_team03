@@ -12,14 +12,14 @@ def get_car_images(color, year, make, model):
 
     photo_links = []
 
-    search = color + ' "' + year + ' ' + make + ' ' + model + '"'
+    search = color + ' "' + year + ' ' + make + ' ' + model + '" car, -Stock -Race'
     api_key = '69d2a5d3d8d58ff369379c070f274857'
     method = 'flickr.photos.search'
     sort = 'relevance'
     safe_search = 1
     per_page = 3
     page = 1
-    size = ''  # blank is 500 PX
+    size = '_w'  # blank is 500 PX
     content_types = 0
 
     url = 'https://www.flickr.com/services/rest/'
@@ -34,8 +34,7 @@ def get_car_images(color, year, make, model):
         data = ET.fromstring(response.content)
 
         for element in data.findall('.//photo'):
-            photo_links.append({'title': element.get('title'), 
-                                'link': "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + size + ".jpg"})
+            photo_links.append({'title': element.get('title'), 'link': "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + size + ".jpg"})
 
         if len(photo_links) == 0:
             return 'Car is not found'

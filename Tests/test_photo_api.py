@@ -21,6 +21,7 @@ make = 'Fiat'
 model = '500'
 
 fiat = photo_api.get_car_images(color, year, make, model)
+print(fiat)
 
 display_car(fiat)
 
@@ -30,6 +31,8 @@ make = 'Toyota'
 model = 'Camry'
 
 camry = photo_api.get_car_images(color, year, make, model)
+print(camry)
+
 
 display_car(camry)
 
@@ -40,6 +43,8 @@ model = 'Mustang'
 
 mustang = photo_api.get_car_images(color, year, make, model)
 
+print(mustang)
+
 display_car(mustang)
 
 color = ''
@@ -47,6 +52,8 @@ year = '1900'
 make = 'Tilken'
 model = 'Mustoong'
 
-mustang = photo_api.get_car_images(color, year, make, model)
+mustoong = photo_api.get_car_images(color, year, make, model)
 
-display_car(mustang)
+print(mustoong)
+
+display_car(mustoong)
