@@ -7,6 +7,7 @@ XML reference: https://www.tutorialspoint.com/python/python_xml_processing.htm
 """
 import requests
 import xml.etree.ElementTree as ET
+import os
 
 def get_car_images(color, year, make, model):
 
@@ -14,6 +15,7 @@ def get_car_images(color, year, make, model):
 
     search = color + ' "' + year + ' ' + make + ' ' + model + '" car, -Stock -Race'
     api_key = os.environ.get('FLICKR_API')
+    print(api_key)
     method = 'flickr.photos.search'
     sort = 'relevance'
     safe_search = 1
@@ -37,7 +39,8 @@ def get_car_images(color, year, make, model):
             photo_links.append({'title': element.get('title'), 'link': "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + size + ".jpg"})
 
         if len(photo_links) == 0:
-            return 'Car is not found'
+            error = 'No photos found for this vehicle'
+            return error
         else:
             return photo_links
 
