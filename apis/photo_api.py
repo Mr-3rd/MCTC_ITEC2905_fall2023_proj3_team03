@@ -9,11 +9,11 @@ import requests
 import xml.etree.ElementTree as ET
 import os
 
-def get_car_images(color, year, make, model):
+def get_car_images(car):
 
     photo_links = []
 
-    search = color + ' "' + year + ' ' + make + ' ' + model + '" car, -Stock -Race'
+    search = '"' + car['year'] + ' ' + car['make'] + ' ' + car['model'] + '" car, -Stock -Race'
     api_key = os.environ.get('FLICKR_API')
     print(api_key)
     method = 'flickr.photos.search'
