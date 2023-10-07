@@ -13,7 +13,7 @@ def get_car_images(color, year, make, model):
     photo_links = []
 
     search = color + ' "' + year + ' ' + make + ' ' + model + '" car, -Stock -Race'
-    api_key = '69d2a5d3d8d58ff369379c070f274857'
+    api_key = os.environ.get('FLICKR_API')
     method = 'flickr.photos.search'
     sort = 'relevance'
     safe_search = 1
