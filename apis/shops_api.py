@@ -1,4 +1,7 @@
 """
+This API call will return the 5 highest rated autoshops that are near the users current location
+
+geocoder reference: https://stackoverflow.com/questions/24906833/how-to-access-current-location-of-any-user-using-python
 
 """
 
@@ -8,8 +11,6 @@ import geocoder
 import logging
 import os
 
-API_key = os.environ.get('YELP_API_KEY')
-
 def get_location():
     g = geocoder.ip('me')
     return g.latlng
@@ -18,7 +19,7 @@ get_location()
 
 def get_shops():
     url = "https://api.yelp.com/v3/businesses/search?"
-    # API_key = os.environ.get('YELP_API_KEY')
+    API_key = os.environ.get('YELP_API_KEY')
     location = get_location()
 
     headers = {
@@ -32,22 +33,19 @@ def get_shops():
     'categories': 'autorepair',
     'sort_by': 'rating', 
     'limit':5
-
     }
-
 
     businesses = []
     
 
     try:
         response = requests.get(url, headers=headers, params=payload)
+        response.raise_for_status()
         data = response.json()
 
-        # pprint(data)
         for business in data['businesses']:
 
             name = business['name']
-            # print(business['image_url'])
             url = business['url']
             rating = business['rating']
             street_address = business['location']['address1']
@@ -67,31 +65,25 @@ def get_shops():
         return businesses
 
 
-
-    # add dictionary to get sorted list
-
     except requests.HTTPError as HTerror: 
-
         logging.exception(HTerror)
-
+        print('An HTTP error has occurred.')
         return HTerror 
 
     except requests.exceptions.Timeout: 
-        error = 'Catastrophic error occurred' 
+        error = 'Request has timed out' 
         logging.exception(error)
-
-        return  error
+        print('The request has timed out.')
+        return error
 
     except requests.exceptions.RequestException: 
-        error = 'Catastrophic error occurred' 
+        error = 'Error occurred while processing request' 
         logging.exception(error) 
-        return  error
+        print('An error has occurred while processing this request' )
+        return error
 
 
-# get_shops()
-# location = get_location
-# print(location)
 shops = get_shops()
 
 for shop in shops:
-    print(shop)
+    pprint(shop)
