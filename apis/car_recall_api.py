@@ -5,9 +5,14 @@ car has.
 """
 
 import requests
+from functools import cache
+from datetime import datetime
 
+
+@cache
 def get_car_recall(year, make, model):
-    recall_results = []
+    recall_results = {}
+
     nhtsa_url = 'https://api.nhtsa.gov/recalls/recallsByVehicle'
 
     if make == '' or model == '' or year == '':
@@ -19,13 +24,32 @@ def get_car_recall(year, make, model):
         nhtsa_response.raise_for_status() # raise exception for 400 or 500 errors
         nhtsa_data = nhtsa_response.json()
 
-        count = nhtsa_data['Count']
+        recall_results['Count'] = nhtsa_data['Count']
 
-        for recall in nhtsa_data['results']:
-            recall_results.append({'ReportReceivedDate': recall['ReportReceivedDate'], 'Component': recall['Component'].title(),
+        recall_results['results'] = []
+
+        sorted_recalls = sorted(nhtsa_data['results'], key=lambda x: datetime.strptime(x['ReportReceivedDate'], '%d/%m/%Y'))
+
+        for recall in sorted_recalls:
+            recall_results['results'].append({'ReportReceivedDate': recall['ReportReceivedDate'], 'Component': recall['Component'].title(),
                                    'Summary': recall['Summary'].capitalize()})
-        return count, recall_results
-        
-    except Exception as ex: #todo: make more explicit error handling
-        print('Sorry, unable to search car.', ex)
 
+        return recall_results
+    
+    # explicit error handling
+    except requests.exceptions.InvalidSchema as schema_er: 
+        print('Sorry, unable to search car. InvalidSchema Error:', schema_er)
+
+    except requests.exceptions.ConnectionError as conn_er: 
+        print('Sorry, unable to search car. Connecion Error:', conn_er)
+
+    except requests.exceptions.HTTPError as http_er: 
+        print('Sorry, unable to search car. HTTP Error:', http_er)
+    
+    except requests.exceptions.RequestException as req_er:
+         print('Sorry, unable to search car. Error:', req_er)
+
+    except Exception as er:
+         print('Sorry, unable to search car.', er)    
+
+get_car_recall(2012, 'fiat', '500')
