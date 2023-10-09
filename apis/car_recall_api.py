@@ -10,15 +10,11 @@ from datetime import datetime
 import logging
 
 @cache
-def get_car_recall(year, make, model):
+def get_car_recall(car):
     recall_results = {}
 
     nhtsa_url = 'https://api.nhtsa.gov/recalls/recallsByVehicle'
-    #nhtsa_url = 'https://api.nhtsa.gov/recalls/asdfasdfasdfs'
-
-    if make == '' or model == '' or year == '':
-            raise ValueError('Sorry, you must enter a value.')
-    nhtsa_query = {'make': make, 'model': model, 'modelYear': year, 'timeout': 30}
+    nhtsa_query = {'make': car['make'], 'model': car['model'], 'modelYear': car['year'], 'timeout': 30}
 
     try: 
         nhtsa_response = requests.get(nhtsa_url , params=nhtsa_query)
@@ -37,6 +33,7 @@ def get_car_recall(year, make, model):
 
         return recall_results
     
+    # explict error handling
     except requests.HTTPError as HTerror:
          error = 'An error has occurred: ' + str(nhtsa_response.status_code)
          logging.exception(HTerror)
@@ -50,21 +47,3 @@ def get_car_recall(year, make, model):
          logging.exception(error)
          return error
 
-    # explicit error handling
-    # except requests.exceptions.InvalidSchema as schema_er: 
-    #     print('Sorry, unable to search car. InvalidSchema Error:', schema_er)
-
-    # except requests.exceptions.ConnectionError as conn_er: 
-    #     print('Sorry, unable to search car. Connecion Error:', conn_er)
-
-    # except requests.exceptions.HTTPError as http_er: 
-    #     print('Sorry, unable to search car. HTTP Error:', http_er)
-    
-    # except requests.exceptions.RequestException as req_er:
-    #      print('Sorry, unable to search car. Error:', req_er)
-
-    # except Exception as er:
-    #      print('Sorry, unable to search car.', er)    
-
-recall = get_car_recall(2012, 'fiat', '500')
-print(recall)
