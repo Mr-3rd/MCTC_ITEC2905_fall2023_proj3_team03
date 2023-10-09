@@ -6,7 +6,6 @@ geocoder reference: https://stackoverflow.com/questions/24906833/how-to-access-c
 """
 
 import requests
-from pprint import pprint #
 import geocoder
 import logging
 import os
@@ -17,7 +16,7 @@ def get_location():
 
 get_location()
 
-def get_shops():
+def get_shops(car):
     url = "https://api.yelp.com/v3/businesses/search?"
     API_key = os.environ.get('YELP_API_KEY')
     location = get_location()
@@ -32,7 +31,8 @@ def get_shops():
     'longitude': location[1],
     'categories': 'autorepair',
     'sort_by': 'rating', 
-    'limit':5
+    'limit':5,
+    'term': car['make']
     }
 
     businesses = []
@@ -45,13 +45,6 @@ def get_shops():
 
         for business in data['businesses']:
 
-            name = business['name']
-            url = business['url']
-            rating = business['rating']
-            street_address = business['location']['address1']
-            city = business['location']['city']
-            state = business['location']['state']
-
             business = {
             'name': business['name'],
             'url': business['url'],
@@ -62,28 +55,19 @@ def get_shops():
 
             }
             businesses.append(business)
+
         return businesses
 
 
     except requests.HTTPError as HTerror: 
         logging.exception(HTerror)
-        print('An HTTP error has occurred.')
-        return HTerror 
-
+        error = 'Website error: ' + str(response.status_code)
+        return error
     except requests.exceptions.Timeout: 
-        error = 'Request has timed out' 
+        error = 'The website has timed out' 
         logging.exception(error)
-        print('The request has timed out.')
         return error
-
-    except requests.exceptions.RequestException: 
-        error = 'Error occurred while processing request' 
-        logging.exception(error) 
-        print('An error has occurred while processing this request' )
+    except Exception:
+        error = 'A catastrophic error has occurred: '
+        logging.exception(error)
         return error
-
-
-shops = get_shops()
-
-for shop in shops:
-    pprint(shop)
