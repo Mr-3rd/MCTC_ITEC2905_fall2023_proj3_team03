@@ -1,5 +1,6 @@
 venv
 *.pyc
 .gitkeep
+.vscode
 testing_results
 __pycache__
