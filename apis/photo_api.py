@@ -7,6 +7,7 @@ XML reference: https://www.tutorialspoint.com/python/python_xml_processing.htm
 """
 import requests
 import xml.etree.ElementTree as ET
+import logging
 import os
 
 def get_car_images(car):
