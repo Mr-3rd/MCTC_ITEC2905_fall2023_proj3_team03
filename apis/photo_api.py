@@ -44,9 +44,16 @@ def get_car_images(car):
         else:
             return photo_links
 
-    except Exception as e:
-        print('An error has occurred: ')
-        print(e)
-        print(response.text)
-        return e
+    except requests.HTTPError as HTerror:
+        error = 'An error has occurred: ' + str(response.status_code)
+        logging.exception(HTerror)
+        return error
+    except requests.exceptions.Timeout:
+        error = 'The website has timed out'
+        logging.exception(error)
+        return error
+    except Exception:
+        error = 'A catastrophic error has occurred'
+        logging.exception(error)
+        return error
         
