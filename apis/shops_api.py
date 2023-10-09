@@ -14,8 +14,6 @@ def get_location():
     g = geocoder.ip('me')
     return g.latlng
 
-get_location()
-
 def get_shops(car):
     url = "https://api.yelp.com/v3/businesses/search?"
     API_key = os.environ.get('YELP_API_KEY')
