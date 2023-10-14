@@ -1,8 +1,10 @@
 """
-Test API code for YouTube, to be imported into API server
+This API service takes in a car object and it's related recalls object in the form of dictionaries to make an
+API call to youtube that returns a list of video titles and links for each of the recall components 
+present for a specific Year Make and Model. In the event of an error the details are logged to the system, 
+and a user message string is returned
 
-XML reference: https://www.tutorialspoint.com/python/python_xml_processing.htm
-
+YouTube 
 
 """
 import requests
