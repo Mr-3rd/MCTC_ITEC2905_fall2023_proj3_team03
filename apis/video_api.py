@@ -73,7 +73,7 @@ def get_car_videos(car , recalls):
             logging.exception(error)
             return error
         
-    # if there are no photos returned in the list return a string with  that message
+    # if there are no videos returned in the list return a string with  that message
     if len(video_links) == 0:
         return 'Car recall videos not found'
     else:
