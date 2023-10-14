@@ -46,7 +46,7 @@ def get_car_images(car):
     try:
         # collect the XML data response from Flickr
         response = requests.get(url, params=payload)
-        # raise a status to create an error if not found, server error and more
+        # raise a status to create an error if not found, server error and other type of server error
         response.raise_for_status()
 
         # todo: make a parser for error handling
