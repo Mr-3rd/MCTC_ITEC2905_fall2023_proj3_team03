@@ -23,10 +23,13 @@ def get_car_recall():
     model = request.args.get('model')
     car = {'year': year, 'make': make, 'model': model }
 
-    car_recalls = 
+    car_recalls = car_recall_api(car)
+    car_photos = photo_api(car)
+    car_videos = video_api(car)
+    car_shops = shops_api(car)
 
-    return render_template('github.html', user_data=user_data)
-
+    return render_template('car_recalls.html', car_recalls=car_recalls, 
+                           car_photos=car_photos, car_videos=car_videos, car_shops=car_shops)
     
 
 if __name__ == '__main__':
