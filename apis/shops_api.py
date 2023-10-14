@@ -1,7 +1,13 @@
 """
 This API call will return the 5 highest rated autoshops that are near the users current location
+The geocoder library gets the latitude and longitude of the current user.
+The API takes in a car object then uses the API to search for auto repair shops. 
+The response then extracts the name, URL, rating, street address, city, state and then will create a dictionary with these values.
+If there are any errors, it catches and logs the error, then returns an error message.
 
 geocoder reference: https://stackoverflow.com/questions/24906833/how-to-access-current-location-of-any-user-using-python
+
+logging reference: https://docs.python.org/3/library/logging.html#levels
 
 """
 
