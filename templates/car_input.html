@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
 
-    <h1>Welcome to the Automotive Solution Tool!</h1>
 </head>
 <body>
 
-    <p>Please fill out the boxes below to search for your desired car:</p>
+    <h1>Welcome to the Automotive Solution Tool!</h1>
+
+    <h3>Please fill out the boxes below to search for your desired car:</h3>
 
     <form method="GET" action="get_car">
+
+        <br>
+        <label>Year:</label>
+        <br>
+        <input type="number" name="year">
+        <br>
+        <label>Make:</label>
+        <br>
+        <input type="text" name="make">
+        <br>
+        <label>Model:</label>
+        <br>
+        <input type="text" name="model">
+        <br>
+        <button type="submit">Search</button>
         
-        <form>
-            Make: <input type="text" name="make"><br />
-            <br>
-            Model: <input type="text" name="model"><br />
-            <br>
-            Model Year: <input type="number" name="year"><br />
-            <br>
-            <button type="submit">Search</button>
-        </form>
     </form>
     
     
