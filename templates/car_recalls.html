@@ -12,20 +12,29 @@
 {% if car_recalls.count > 0 %}
     <ul>
     {% for recall in car_recalls.results %}
-        <li>{{ recall.ReportReceivedDate }} 
+        <li>Date of Recall (day/month/year): {{ recall.ReportReceivedDate }} 
             <br> 
-            {{ recall.Component  }}
+            Affected Component: {{ recall.Component  }}
             <br>
-            {{ recall.Summary }}
+            Summary of recall: {{ recall.Summary }}
         </li>
     {% endfor %}
     </ul>
-{% endif %}    
+{% endif %}
+
 <br>
 {{ car_videos }}
 <br>
 
-{{ car_shops }}
-
+<ul>
+{% for shop in car_shops %}
+    <li>Business Name: <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
+        <br> 
+        Rating: {{ shop.rating  }}
+        <br>
+        Location: {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
+    </li>
+{% endfor %}
+</ul>
 
 {% endblock %}
