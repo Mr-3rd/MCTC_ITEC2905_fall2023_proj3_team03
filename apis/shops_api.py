@@ -16,20 +16,26 @@ import geocoder
 import logging
 import os
 
+# gets lat/long of user's current location using geocoder library
 def get_location():
     g = geocoder.ip('me')
     return g.latlng
 
 def get_shops(car):
+    # API call
     url = "https://api.yelp.com/v3/businesses/search?"
+    # gets API key from os
     API_key = os.environ.get('YELP_API_KEY')
+    # calls the get_location function, gets users lat/long
     location = get_location()
 
+    # authorizes the API key
     headers = {
         "accept": "application/json",
         "Authorization": "Bearer " + API_key
     }
 
+    # query parameters
     payload = {
     'latitude': location[0],
     'longitude': location[1],
@@ -39,16 +45,23 @@ def get_shops(car):
     'term': car['make']
     }
 
+    # initializes and empty list to store API reuest results
     businesses = []
     
 
     try:
+        # collects the data response from Yelp
         response = requests.get(url, headers=headers, params=payload)
+        # checks if there's an error in the response
         response.raise_for_status()
+        # retrieves the JSON data from response
         data = response.json()
 
+        # iterates over businesses
         for business in data['businesses']:
 
+            # extracts name, URL, rating, street address, city, and state
+            # dictionary is created with these values
             business = {
             'name': business['name'],
             'url': business['url'],
@@ -59,10 +72,12 @@ def get_shops(car):
 
             }
             businesses.append(business)
-
+        # list is returned in a dictionary
         return businesses
 
 
+    # error handling - HTTP error, a timeout error, or any other exception
+    # logs error and returns an error message
     except requests.HTTPError as HTerror: 
         logging.exception(HTerror)
         error = 'Website error: ' + str(response.status_code)
