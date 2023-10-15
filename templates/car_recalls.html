@@ -1,59 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Recall Solution for</h2>
-<h3>{{ year }} {{ make }} {{ model }}</h3>
+<h2>Recall Solution for {{ year }} {{ make }} {{ model }}</h2>
 <br>
-
-{{ car_photos }} 
-<ul>
 {% for photo in car_photos %}
-    <li>{{ photo.title }} : {{ photo.link }}</li>
+    <h4>{{ photo.title }}</h4>
+    <img src="{{ photo.link }}" alt="Slide: {{ photo.title }}">
 {% endfor %}
-</ul>
-
-<div>
-    <div id="car-photos" class="carousel slide" data-ride="carousel">
-        <ul class="carousel-indicators">
-            {% for photo in car_photos %}
-            {% if loop.index == 0 %}
-                <li data-target="#car-photos" data-slide-to="{{ loop.index }}" class="active"></li>
-            {% else %}
-                <li data-target="#car-photos" data-slide-to="{{ loop.index }}"></li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-
-        <!-- This holds all the images for a carousel -->
-        <div class="carousel-inner">
-            {% for photo in car_photos %}
-            {% if loop.index == 0 %}
-            <div class="carousel-item active">
-                <img src="{{ photo.link }}" alt="Title Slide: {{ photo.title }}">
-            </div>
-            {% else %}
-            <div class="carousel-item">
-                <img src="{{ photo.link }}" alt="Slide photo.index:  {{ photo.title }}">
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#car-photos" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#car-photos" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-        </a>
-    </div>
-</div>
-
 <br>
-{{ car_recalls }}
+
+{% if car_recalls.count > 0 %}
+    <ul>
+    {% for recall in car_recalls.results %}
+        <li>{{ recall.ReportReceivedDate }} 
+            <br> 
+            {{ recall.Component  }}
+            <br>
+            {{ recall.Summary }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}    
 <br>
 {{ car_videos }}
 <br>
+
 {{ car_shops }}
 
 
