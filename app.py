@@ -23,12 +23,12 @@ def get_car_recall():
     model = request.args.get('model')
     car = {'year': year, 'make': make, 'model': model }
 
-    car_recalls = car_recall_api(car)
-    car_photos = photo_api(car)
-    car_videos = video_api(car)
-    car_shops = shops_api(car)
+    car_recalls = car_recall_api.get_car_recall(car)
+    car_photos = photo_api.get_car_images(car)
+    car_videos = video_api.get_car_videos(car)
+    car_shops = shops_api.get_shops(car)
 
-    return render_template('car_recalls.html', car_recalls=car_recalls, 
+    return render_template('car_recalls.html', car=car,car_recalls=car_recalls, 
                            car_photos=car_photos, car_videos=car_videos, car_shops=car_shops)
     
 
