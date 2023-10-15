@@ -14,7 +14,7 @@ def get_car_recall(year, make, model):
     
     car = {'year': year, 'make': make, 'model': model }
 
-    recall_results = {'count': 0, 'results' : ''}
+    recall_results = {'count': '', 'results' : ''}
 
     nhtsa_url = 'https://api.nhtsa.gov/recalls/recallsByVehicle'
     nhtsa_query = {'make': car['make'], 'model': car['model'], 'modelYear': car['year'], 'timeout': 30}
@@ -24,7 +24,7 @@ def get_car_recall(year, make, model):
         nhtsa_response.raise_for_status() # raise exception for 400 or 500 errors
         nhtsa_data = nhtsa_response.json()
 
-        recall_results['Count'] = nhtsa_data['Count']
+        recall_results['count'] = nhtsa_data['Count']
 
         recall_results['results'] = []
 
