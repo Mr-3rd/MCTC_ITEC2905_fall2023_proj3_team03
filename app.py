@@ -21,14 +21,14 @@ def get_car_recall():
     year = request.args.get('year')
     make = request.args.get('make')
     model = request.args.get('model')
-    car = {'year': year, 'make': make, 'model': model }
+    # car = {'year': year, 'make': make, 'model': model }
 
-    car_recalls = car_recall_api.get_car_recall(car)
-    car_photos = photo_api.get_car_images(car)
-    car_videos = video_api.get_car_videos(car)
-    car_shops = shops_api.get_shops(car)
+    car_recalls = car_recall_api.get_car_recall(year, make, model)
+    car_photos = photo_api.get_car_images(year, make, model)
+    car_videos = video_api.get_car_videos(year, make, model, car_recalls)
+    car_shops = shops_api.get_shops(year, make, model)
 
-    return render_template('car_recalls.html', car=car,car_recalls=car_recalls, 
+    return render_template('car_recalls.html', year=year,make=make,model=model,car_recalls=car_recalls, 
                            car_photos=car_photos, car_videos=car_videos, car_shops=car_shops)
     
 

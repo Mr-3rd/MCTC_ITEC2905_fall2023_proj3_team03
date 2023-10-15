@@ -10,8 +10,11 @@ from datetime import datetime
 import logging
 
 @cache
-def get_car_recall(car):
-    recall_results = {}
+def get_car_recall(year, make, model):
+    
+    car = {'year': year, 'make': make, 'model': model }
+
+    recall_results = {'count': 0, 'results' : ''}
 
     nhtsa_url = 'https://api.nhtsa.gov/recalls/recallsByVehicle'
     nhtsa_query = {'make': car['make'], 'model': car['model'], 'modelYear': car['year'], 'timeout': 30}

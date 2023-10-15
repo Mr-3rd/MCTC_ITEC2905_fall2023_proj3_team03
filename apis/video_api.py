@@ -16,7 +16,10 @@ import os
 import logging
 
 
-def get_car_videos(car , recalls):
+def get_car_videos(year, make, model , recalls):
+
+    car = {'year': year, 'make': make, 'model': model }
+
     # initiate a blank list to hold the video elements
     video_links = []
     # create the list searching url that returns a set of video details from youtube
@@ -26,7 +29,7 @@ def get_car_videos(car , recalls):
     # create the search query used to locate videos, remove the year for potentially more accurate searches
     query = '' + car['year'] + ' ' + car['make'] + ' ' + car['model'] + ', '
     # loop over each recall in the list of recalls
-    for recall in recalls['recalls']:
+    for recall in recalls['results']:
         # create a new query concatenating the car query with the lower case component
         new_query = query + recall['Component'].lower().replace(':', ' ') +' recall'
         # create the search payload and parameters with the new search
