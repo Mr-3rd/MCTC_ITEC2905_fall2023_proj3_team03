@@ -26,7 +26,6 @@ def get_car_videos(year, make, model , recalls):
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     # collect the users api key from the environment
     api_key = os.environ.get('YOUTUBE_API')
-    # api_key = 'AIzaSyCS59U2aziZ2-IQNwaOp59W2uhaq1l0fc0'
     # create the search query used to locate videos, remove the year for potentially more accurate searches
     query = '' + car['make'] + ' ' + car['model'] + ' '
     # loop over each recall in the list of recalls
