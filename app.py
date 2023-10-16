@@ -24,12 +24,17 @@ def get_car_recall():
     # car = {'year': year, 'make': make, 'model': model }
 
     car_recalls = car_recall_api.get_car_recall(year, make, model)
-    car_photos = photo_api.get_car_images(year, make, model)
-    car_videos = video_api.get_car_videos(year, make, model, car_recalls)
-    car_shops = shops_api.get_shops(year, make, model)
+    if type(car_recalls) != str:
+        car_photos = photo_api.get_car_images(year, make, model)
+        car_videos = video_api.get_car_videos(year, make, model, car_recalls)
+        car_shops = shops_api.get_shops(year, make, model)
 
-    return render_template('car_recalls.html', year=year,make=make,model=model,car_recalls=car_recalls, 
+    if type(car_recalls) == str or type(car_photos) == str or type(car_videos) == str or type(car_shops) == str:
+        return render_template('error.html', error='Generic Error Found')
+    else:
+        return render_template('car_recalls.html', year=year,make=make,model=model,car_recalls=car_recalls, 
                            car_photos=car_photos, car_videos=car_videos, car_shops=car_shops)
+        
     
 
 if __name__ == '__main__':
