@@ -63,10 +63,6 @@ def get_car_videos(year, make, model , recalls):
                 video_links.append({'title': title, 'embed': embed})
 
                 # if there are no videos returned in the list return a string with  that message
-            if len(video_links) == 0:
-                return 'Car recall videos not found'
-            else:
-                return video_links
 
         # error handling block for call returns an error message as a string and logs the error to the system
         except requests.HTTPError as HTerror:
@@ -81,4 +77,9 @@ def get_car_videos(year, make, model , recalls):
             error = 'A catastrophic error has occurred'
             logging.exception(error)
             return error
+        
+    if len(video_links) == 0:
+        return 'Car recall videos not found'
+    else:
+        return video_links
     
