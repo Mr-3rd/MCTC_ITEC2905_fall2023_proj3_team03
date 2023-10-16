@@ -26,6 +26,7 @@ def get_car_videos(year, make, model , recalls):
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     # collect the users api key from the environment
     api_key = os.environ.get('YOUTUBE_API')
+    # api_key = 'AIzaSyCS59U2aziZ2-IQNwaOp59W2uhaq1l0fc0'
     # create the search query used to locate videos, remove the year for potentially more accurate searches
     query = '' + car['make'] + ' ' + car['model'] + ' '
     # loop over each recall in the list of recalls
@@ -62,6 +63,12 @@ def get_car_videos(year, make, model , recalls):
                 # append both to the list
                 video_links.append({'title': title, 'embed': embed})
 
+                # if there are no videos returned in the list return a string with  that message
+            if len(video_links) == 0:
+                return 'Car recall videos not found'
+            else:
+                return video_links
+
         # error handling block for call returns an error message as a string and logs the error to the system
         except requests.HTTPError as HTerror:
             error = 'An error has occurred: ' + str(response.status_code)
@@ -75,10 +82,4 @@ def get_car_videos(year, make, model , recalls):
             error = 'A catastrophic error has occurred'
             logging.exception(error)
             return error
-        
-    # if there are no videos returned in the list return a string with  that message
-    if len(video_links) == 0:
-        return 'Car recall videos not found'
-    else:
-        return video_links
     
