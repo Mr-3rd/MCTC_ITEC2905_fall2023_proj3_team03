@@ -1,0 +1,41 @@
+.jumbotron {
+    background-image: linear-gradient(to bottom right, #BAD1C2, #FAD6A5);
+    color: #473C33;
+    font-family: 'Quicksand', sans-serif;
+    padding-bottom: 30px;
+}
+
+.car_form {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+    padding-bottom: 200px;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #F0ECCF; 
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    color: #473C33;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+.home_icon {
+    padding-top: 20px;
+    max-width: 30%;
+    max-height: 50%;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
