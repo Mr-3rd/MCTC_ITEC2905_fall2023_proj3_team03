@@ -17,7 +17,6 @@ This application will get recall information from the NTSHA website base on the 
 * Create an environment variable **FLICKR_API ** holding your Flickr API key.
 * Create an environment variable **YELP_API ** holding your Yelp API key.
 * Create an environment variable **YOUTUBE_API ** holding your YouTube API key.
-* Create a Cat API key at https://thecatapi.com/signup and create an environment variable **CAT_API_KEY** holding your key
 
 * Create and activate virtual environment using Python
 * `pip install -r requirements.txt`
