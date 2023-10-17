@@ -16,7 +16,10 @@ import os
 import logging
 
 
-def get_car_videos(car , recalls):
+def get_car_videos(year, make, model , recalls):
+
+    car = {'year': year, 'make': make, 'model': model }
+
     # initiate a blank list to hold the video elements
     video_links = []
     # create the list searching url that returns a set of video details from youtube
@@ -24,9 +27,9 @@ def get_car_videos(car , recalls):
     # collect the users api key from the environment
     api_key = os.environ.get('YOUTUBE_API')
     # create the search query used to locate videos, remove the year for potentially more accurate searches
-    query = '' + car['year'] + ' ' + car['make'] + ' ' + car['model'] + ', '
+    query = '' + car['year'] + ' ' + car['make'] + ' ' + car['model'] + ' '
     # loop over each recall in the list of recalls
-    for recall in recalls['recalls']:
+    for recall in recalls['results']:
         # create a new query concatenating the car query with the lower case component
         new_query = query + recall['Component'].lower().replace(':', ' ') +' recall'
         # create the search payload and parameters with the new search
@@ -59,6 +62,8 @@ def get_car_videos(car , recalls):
                 # append both to the list
                 video_links.append({'title': title, 'embed': embed})
 
+                # if there are no videos returned in the list return a string with  that message
+
         # error handling block for call returns an error message as a string and logs the error to the system
         except requests.HTTPError as HTerror:
             error = 'An error has occurred: ' + str(response.status_code)
@@ -73,7 +78,6 @@ def get_car_videos(car , recalls):
             logging.exception(error)
             return error
         
-    # if there are no videos returned in the list return a string with  that message
     if len(video_links) == 0:
         return 'Car recall videos not found'
     else:

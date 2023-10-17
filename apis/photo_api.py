@@ -18,7 +18,10 @@ import logging
 import os
 
 
-def get_car_images(car):
+def get_car_images(year, make, model):
+    # turn the input into a dictionary
+    car = {'year': year, 'make': make, 'model': model }
+
     # Create a blank list to hold the title and photo link of each image
     photo_links = []
     # Concatenate the car object with strings form a tailored search criteria, this avoids racecars and nascars
