@@ -41,3 +41,10 @@ h3 {
     display: block;
 }
 
+.recall_info {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

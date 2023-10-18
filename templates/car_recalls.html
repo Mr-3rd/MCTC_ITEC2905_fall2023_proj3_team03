@@ -4,44 +4,47 @@
 
 {% block content %}
 
-<br>
-{% for photo in car_photos %}
-    <h4>{{ photo.title }}</h4>
-    <img src="{{ photo.link }}" alt="Slide: {{ photo.title }}">
-{% endfor %}
-<br>
+<div class="recall_info">
+    {% for photo in car_photos %}
+        <h4>{{ photo.title }}</h4>
+        <img src="{{ photo.link }}" alt="Slide: {{ photo.title }}">
+    {% endfor %}
+</div>
 
-{% if car_recalls.count > 0 %}
+<div class="recall_info">
+    {% if car_recalls.count > 0 %}
+        <ul>
+        {% for recall in car_recalls.results %}
+            <li>Date of Recall (day/month/year): {{ recall.ReportReceivedDate }} 
+                <br> 
+                Affected Component: {{ recall.Component  }}
+                <br>
+                Summary of recall: {{ recall.Summary }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+<div class="recall_info">
+    {% for video in car_videos %}
+        <h2>{{ video.title }}</h2>
+        <iframe width="420" height="315" src="{{ video.embed }}"></iframe>
+    {% endfor %}
+</div>
+
+<div class="recall_info">
     <ul>
-    {% for recall in car_recalls.results %}
-        <li>Date of Recall (day/month/year): {{ recall.ReportReceivedDate }} 
+    {% for shop in car_shops %}
+        <li>Business Name: <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
             <br> 
-            Affected Component: {{ recall.Component  }}
+            Rating: {{ shop.rating  }}
             <br>
-            Summary of recall: {{ recall.Summary }}
+            Location: {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
         </li>
     {% endfor %}
     </ul>
-{% endif %}
-
-<br>
-{% for video in car_videos %}
-    <h2>{{ video.title }}</h2>
-    <iframe width="420" height="315" src="{{ video.embed }}"></iframe>
-{% endfor %}
-<br>
-
-<ul>
-{% for shop in car_shops %}
-    <li>Business Name: <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
-        <br> 
-        Rating: {{ shop.rating  }}
-        <br>
-        Location: {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
-    </li>
-{% endfor %}
-</ul>
-
+</div>
 
 
 {% endblock %}
