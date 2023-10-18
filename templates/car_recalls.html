@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Recall Solution for {{ year }} {{ make }} {{ model }}</h2>
+
+<h1>{{ year }} {{ make.title() }} {{ model.title() }}
+
 <br>
 {% for photo in car_photos %}
     <h4>{{ photo.title }}</h4>
@@ -39,5 +41,7 @@
     </li>
 {% endfor %}
 </ul>
+
+
 
 {% endblock %}

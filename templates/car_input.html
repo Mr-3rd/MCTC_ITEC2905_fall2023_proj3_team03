@@ -2,28 +2,25 @@
 {% block content %}
 
 
-<h1>Welcome to the Automotive Solution Tool!</h1>
+    <h1>Welcome to the Automotive Solution Tool!</h1>
+    <img class='home_icon' src="{{ url_for('static', filename='car.jpg') }}" alt="picture of a car">
+
+
 
 <h3>Please fill out the boxes below to search for your desired car:</h3>
 
-<form method="GET" action="get_car">
-
-    <br>
-    <label>Year:</label>
-    <br>
-    <input type="number" name="year">
-    <br>
-    <label>Make:</label>
-    <br>
-    <input type="text" name="make">
-    <br>
-    <label>Model:</label>
-    <br>
-    <input type="text" name="model">
-    <br>
-    <button type="submit">Search</button>
-    <button type="reset">Reset</button>
-    
-</form>
+<div class="car_form">
+    <form method="GET" action="get_car">
+                    
+            <label class="car_details">Year:</label> <input type="number" name="year" class="form-control" required><br>  
+                    
+            <label class="car_details">Make:</label> <input type="text" name="make" class="form-control" required><br>
+            
+            <label class="car_details">Model:</label> <input type="text" name="model" class="form-control" required><br>
+                    
+            <button type="submit">Search</button><br>
+                    
+    </form>
+</div>
     
 {% endblock %}
