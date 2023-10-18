@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
+
+{% block h1 %}Recall Solution for {{ year }} {{ make.title() }} {{ model.title() }}{% endblock %}
+
 {% block content %}
-
-
-<h1>{{ year }} {{ make.title() }} {{ model.title() }}
 
 <br>
 {% for photo in car_photos %}

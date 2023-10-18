@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
+
+
+{% block h1 %}
+Welcome to the Automotive Solution Tool!
+<img class='home_icon' src="{{ url_for('static', filename='car.jpg') }}" alt="picture of a car">
+{% endblock %}
+
+
+
 {% block content %}
-
-
-    <h1>Welcome to the Automotive Solution Tool!</h1>
-    <img class='home_icon' src="{{ url_for('static', filename='car.jpg') }}" alt="picture of a car">
-
-
-
 <h3>Please fill out the boxes below to search for your desired car:</h3>
 
 <div class="car_form">
