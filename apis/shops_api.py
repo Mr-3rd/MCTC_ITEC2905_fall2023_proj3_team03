@@ -76,7 +76,7 @@ def get_shops(year, make, model):
             }
             businesses.append(business)
         # list is returned in a dictionary
-        return businesses
+        return None, businesses
 
 
     # error handling - HTTP error, a timeout error, or any other exception
@@ -84,12 +84,12 @@ def get_shops(year, make, model):
     except requests.HTTPError as HTerror: 
         logging.exception(HTerror)
         error = 'Website error: ' + str(response.status_code)
-        return error
+        return error, None
     except requests.exceptions.Timeout: 
         error = 'The website has timed out' 
         logging.exception(error)
-        return error
+        return error, None
     except Exception:
         error = 'A catastrophic error has occurred: '
         logging.exception(error)
-        return error
+        return error, None

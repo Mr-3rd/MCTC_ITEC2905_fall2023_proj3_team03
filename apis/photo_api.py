@@ -64,21 +64,21 @@ def get_car_images(year, make, model):
         # if there are no photos returned in the list return a string with  that message
         if len(photo_links) == 0:
             error = 'No photos found for this vehicle'
-            return error
+            return error, None
         else:
-            return photo_links
+            return None, photo_links
 
     # error handling block for call returns an error message as a string and logs the error to the system
     except requests.HTTPError as HTerror:
         error = 'An error has occurred: ' + str(response.status_code)
         logging.exception(HTerror)
-        return error
+        return error , None
     except requests.exceptions.Timeout:
         error = 'The website has timed out'
         logging.exception(error)
-        return error
+        return error, None
     except Exception:
         error = 'A catastrophic error has occurred'
         logging.exception(error)
-        return error
+        return error, None
         
