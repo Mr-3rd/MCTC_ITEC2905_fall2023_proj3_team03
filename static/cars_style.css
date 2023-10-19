@@ -1,3 +1,4 @@
+
 .jumbotron {
     background-image: linear-gradient(to bottom right, #BAD1C2, #FAD6A5);
     color: #473C33;
@@ -38,4 +39,39 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.recall_photo {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.recall_info {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: table;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.recall_video {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.recall_shops {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
