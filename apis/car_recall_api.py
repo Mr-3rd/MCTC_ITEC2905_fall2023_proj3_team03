@@ -43,19 +43,19 @@ def get_car_recall(year, make, model):
                recall_results['results'].append({'ReportReceivedDate': recall['ReportReceivedDate'], 'Component': recall['Component'].title(),
                                    'Summary': recall['Summary'].capitalize()})
 
-          return 0, recall_results
+          return None, recall_results
     
     # explict error handling
     except requests.HTTPError as HTerror:
          error = 'An error has occurred: ' + str(nhtsa_response.status_code)
          logging.exception(HTerror)
-         return error, 0
+         return error, None
     except requests.exceptions.Timeout:
          error = 'The website has timed out'
          logging.exception(error)
-         return error, 0
+         return error, None
     except Exception:
          error = 'A catastrophic error has occurred'
          logging.exception(error)
-         return error, 0
+         return error, None
 
