@@ -68,18 +68,18 @@ def get_car_videos(year, make, model , recalls):
         except requests.HTTPError as HTerror:
             error = 'An error has occurred: ' + str(response.status_code)
             logging.exception(HTerror)
-            return error, None
+            return error, 0
         except requests.exceptions.Timeout:
             error = 'The website has timed out'
             logging.exception(error)
-            return error, None
+            return error, 0
         except Exception:
             error = 'A catastrophic error has occurred'
             logging.exception(error)
-            return error, None
+            return error, 0
         
     if len(video_links) == 0:
-        return 'Car recall videos not found', None
+        return 'Car recall videos not found', 0
     else:
-        return None, video_links
+        return 0, video_links
     
