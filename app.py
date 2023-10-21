@@ -24,11 +24,11 @@ def get_car_recall():
 
     recall_error, car_recalls = car_recall_api.get_car_recall(year, make, model)
     photo_error, car_photos = photo_api.get_car_images(year, make, model)
-    if car_recalls != 0:
+    if car_recalls != None:
         video_error, car_videos = video_api.get_car_videos(year, make, model, car_recalls)
     else:
         video_error = "No Recalls are present"
-        car_videos = 0 
+        car_videos = None 
     shops_error, car_shops = shops_api.get_shops(year, make, model)
     return render_template('car_recalls.html', year=year,make=make,model=model, recall_error=recall_error, 
                            photo_error=photo_error, car_recalls=car_recalls, car_photos=car_photos, car_videos=car_videos, 
