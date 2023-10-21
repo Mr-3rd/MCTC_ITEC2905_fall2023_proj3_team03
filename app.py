@@ -35,5 +35,11 @@ def get_car_recall():
                            car_shops=car_shops, video_error=video_error , shops_error=shops_error )
     
 
+@app.route('/book_marked')
+def book_marked_page():
+    return render_template('book_marked.html')
+
+
+
 if __name__ == '__main__':
     app.run()
