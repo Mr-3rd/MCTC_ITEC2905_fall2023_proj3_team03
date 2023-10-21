@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'cars_style.css') }}">
 
-    <title>Choose</title>
+    <title>Recall360: Automotive Solution Searcher</title>
 
 </head>
 <body>
@@ -20,17 +20,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Search <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Book Marked</a>
+            <a class="nav-item nav-link active" href="#">Search<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Bookmarked</a>
           </div>
         </div>
       </nav>
 
     <div class="jumbotron">
-      <h1>{% block h1 %}{% endblock %}</h1>
+      <h1>
+        {% block h1 %}
+        {% endblock %}
+      </h1>
     </div>
-
-
 
     {% block content %}
     {% endblock %}

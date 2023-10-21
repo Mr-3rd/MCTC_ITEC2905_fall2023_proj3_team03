@@ -53,12 +53,16 @@ def get_shops(year, make, model):
     
 
     try:
+        logging.info(f'About to make request to shops API at url {url} with PAYLOAD: {payload}')
+
         # collects the data response from Yelp
         response = requests.get(url, headers=headers, params=payload)
         # checks if there's an error in the response
-        response.raise_for_status()
+        # response.raise_for_status()
+        logging.debug(f'response received from API {response}, PAYLOAD: {payload}')
         # retrieves the JSON data from response
         data = response.json()
+        logging.debug(f'data received from API {data}, CONTENT: {response.content}')
 
         # iterates over businesses
         for business in data['businesses']:
@@ -74,9 +78,9 @@ def get_shops(year, make, model):
             'state': business['location']['state']
 
             }
+            logging.debug(f'Appending to Business info: {businesses}')
             businesses.append(business)
-        # list is returned in a dictionary
-        return businesses
+        
 
 
     # error handling - HTTP error, a timeout error, or any other exception
@@ -84,12 +88,20 @@ def get_shops(year, make, model):
     except requests.HTTPError as HTerror: 
         logging.exception(HTerror)
         error = 'Website error: ' + str(response.status_code)
-        return error
+        return error, None
     except requests.exceptions.Timeout: 
         error = 'The website has timed out' 
         logging.exception(error)
-        return error
+        return error, None
     except Exception:
         error = 'A catastrophic error has occurred: '
         logging.exception(error)
-        return error
+        return error, None
+    
+    # list is returned in a dictionary
+    logging.debug(f'List of businesses: {businesses}')
+    if len(businesses) != 0:
+        return None, businesses
+    else:
+        error = "No businesses found for this vehicle"
+        return error, None

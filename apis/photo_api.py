@@ -47,38 +47,43 @@ def get_car_images(year, make, model):
                 'per_page':per_page, 'page':page, 'sort':sort, 'content_types':content_types}
 
     try:
+        logging.info(f'About to make request to photo API at url {url} with PAYLOAD: {payload}')
         # collect the XML data response from Flickr
         response = requests.get(url, params=payload)
         # raise a status to create an error if not found, server error and other type of server error
-        response.raise_for_status()
-
+        # response.raise_for_status()
+        logging.debug(f'response received from API {response}, PAYLOAD: {payload}')
         # todo: make a parser for error handling
         # 
         # create an XML element structure from the response data 
         data = ET.fromstring(response.content)
+        logging.debug(f'data received from API {data}, CONTENT: {response.content}')
 
         # Loop over each photo element and append the title and required photo server elements as a link in a object 
         for element in data.findall('.//photo'):
-            photo_links.append({'title': element.get('title'), 'link': "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + size + ".jpg"})
+            photo_element = {'title': element.get('title'), 'link': "https://live.staticflickr.com/" + element.get('server') + '/' + element.get('id') + '_' + element.get('secret') + size + ".jpg"}
+            photo_links.append(photo_element)
+            logging.debug(f'Appending to photos URLs: {photo_element}')
 
         # if there are no photos returned in the list return a string with  that message
+        logging.debug(f'List of Photos: {photo_links}')
         if len(photo_links) == 0:
             error = 'No photos found for this vehicle'
-            return error
+            return error, None
         else:
-            return photo_links
+            return None, photo_links
 
     # error handling block for call returns an error message as a string and logs the error to the system
     except requests.HTTPError as HTerror:
         error = 'An error has occurred: ' + str(response.status_code)
         logging.exception(HTerror)
-        return error
+        return error , None
     except requests.exceptions.Timeout:
         error = 'The website has timed out'
         logging.exception(error)
-        return error
+        return error, None
     except Exception:
         error = 'A catastrophic error has occurred'
         logging.exception(error)
-        return error
+        return error, None
         
