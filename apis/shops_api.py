@@ -103,5 +103,5 @@ def get_shops(year, make, model):
     if len(businesses) != 0:
         return None, businesses
     else:
-        error = "No businesses found"
+        error = "No businesses found for this vehicle"
         return error, None
