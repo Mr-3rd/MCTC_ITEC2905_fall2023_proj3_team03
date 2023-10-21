@@ -16,7 +16,6 @@ def homepage():
 #create the function to respond to requests from the HTML form 
 @app.route('/get_car')  #must match the call url exactly
 def get_car_recall():
-    errors = []
 
     # Convert into car model
     year = request.args.get('year')
