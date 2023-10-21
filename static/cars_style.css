@@ -75,3 +75,39 @@ h3 {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.recall_error {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.photo_error {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.video_error {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.shops_error {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}

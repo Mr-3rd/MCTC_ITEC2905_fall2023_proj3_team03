@@ -27,7 +27,7 @@ def get_car_recall():
     if car_recalls != None:
         video_error, car_videos = video_api.get_car_videos(year, make, model, car_recalls)
     else:
-        video_error = "No Recalls are present"
+        video_error = "No recall videos found for this vehicle"
         car_videos = None 
     shops_error, car_shops = shops_api.get_shops(year, make, model)
     return render_template('car_recalls.html', year=year,make=make,model=model, recall_error=recall_error, 

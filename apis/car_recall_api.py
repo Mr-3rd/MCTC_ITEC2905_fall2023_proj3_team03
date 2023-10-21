@@ -43,9 +43,13 @@ def get_car_recall(year, make, model):
                recall_results['results'].append({'ReportReceivedDate': recall['ReportReceivedDate'], 'Component': recall['Component'].title(),
                                    'Summary': recall['Summary'].capitalize()})
 
-          return None, recall_results
+          if len(sorted_recalls) != 0:
+               return None, recall_results
+          else:
+               error = "No recalls Found for this vehicle"
+               return error, None
     
-    # explict error handling
+    # explicit error handling
     except requests.HTTPError as HTerror:
          error = 'An error has occurred: ' + str(nhtsa_response.status_code)
          logging.exception(HTerror)
