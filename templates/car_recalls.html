@@ -7,21 +7,21 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 {% block content %}
 
 
-{$ if car_photos != 0 %}
+{% if car_photos != 0 %}
 <div class="recall_photo">
     {% for photo in car_photos %}
         <h4>{{ photo.title }}</h4>
         <img src="{{ photo.link }}" alt="Slide: {{ photo.title }}">
     {% endfor %}
 </div>
-{$ else %}
+{% else %}
 <div class="photo_error">
     {{ photo_error }}
 </div>
 {% endif %}
 
 
-{$ if car_recalls != 0 %}
+{% if car_recalls != 0 %}
 <div class="recall_info">
         <ul>
         {% for recall in car_recalls.results %}
@@ -41,7 +41,7 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 {% endif %}
 
 
-{$ if car_videos != 0 %}
+{% if car_videos != 0 %}
 <div class="recall_video">
     {% for video in car_videos %}
         <h2>{{ video.title }}</h2>
@@ -55,7 +55,7 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 {% endif %}
 
 
-{$ if car_shops %}
+{% if car_shops %}
 <div class="recall_shops">
     <ul>
     {% for shop in car_shops != 0 %}
