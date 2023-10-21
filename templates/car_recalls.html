@@ -55,10 +55,10 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 {% endif %}
 
 
-{% if car_shops %}
+{% if car_shops != 0 %}
 <div class="recall_shops">
     <ul>
-    {% for shop in car_shops != 0 %}
+    {% for shop in car_shops %}
         <li>Business Name: <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
             <br> 
             Rating: {{ shop.rating  }}
