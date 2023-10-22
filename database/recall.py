@@ -37,6 +37,18 @@ class Car_Recall(Model):
         db.create_tables([Car_Recall])
 
     def save_recall(top_recall_dict):
+
+        data = {'year': '2012', 'make': 'Fiat', 'model': '500', 'photo_title': '2012 Fiat 500 Abarth', 
+                'photo_link': 'https://live.staticflickr.com/7207/6838497826_533da1c937_w.jpg', 'photo_error': 'None', 
+                'recall_date': '15/11/2019', 'recall_component': 'Power Train:Automatic Transmission:Lever And Linkage:Floor Shift', 
+                'recall_summary': 'Chrysler (fca us llc) is recalling certain 2012-2013 fiat 500 vehicles equipped with 6-speed automatic transmissions.  the shifter cable bushing may fail allowing the cable to detach from the transmission.', 
+                'recall_error': 'None', 'video_title': 'Easy Transmission Shift Cable Bushing Replacement: HOW TO ESCAPE', 
+                'video_embed': 'https://www.youtube.com/embed/G4V32X0XSxU', 'video_error': 'None', 
+                'shop_url': 'https://www.yelp.com/biz/fiat-of-minneapolis-minneapolis-4?adjust_creative=VFkkfbqQacs_VkhToIhzCw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=VFkkfbqQacs_VkhToIhzCw', 
+                'shop_name': 'FIAT of Minneapolis', 
+                'shop_rating': "({'name': 'FIAT of Minneapolis', 'url': 'https://www.yelp.com/biz/fiat-of-minneapolis-minneapolis-4?adjust_creative=VFkkfbqQacs_VkhToIhzCw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=VFkkfbqQacs_VkhToIhzCw', 'rating': 4.0, 'street_address': '1820 Quentin Ave', 'city': 'Minneapolis', 'state': 'MN'}, Undefined)", 'shop_address': '1820 Quentin Ave', 'shop_city': 'Minneapolis', 'shop_state': 'MN', 'shop_error': 'None'}
+
+
         #create db insert
         return 'Data Stored'
 

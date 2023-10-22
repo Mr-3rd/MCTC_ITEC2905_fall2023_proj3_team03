@@ -36,26 +36,26 @@ def get_car_recall():
                            car_shops=car_shops, video_error=video_error , shops_error=shops_error )
     
 
-@app.route('/bookmark')
-def book_marked_page():
+# @app.route('/bookmark')
+# def book_marked_page():
     
-    all_bookmarks = Car_Recall.get_recalls()
+#     all_bookmarks = Car_Recall.get_recalls()
 
-    year = all_bookmarks['year']
-    make = all_bookmarks['year']
-    model = all_bookmarks['year']
-    recall_error = all_bookmarks['year']
-    photo_error = all_bookmarks['year']
-    car_recalls = all_bookmarks['year'] 
-    car_photos = all_bookmarks['year']
-    car_videos = all_bookmarks['year']
-    car_shops = all_bookmarks['year']
-    video_error = all_bookmarks['year']
-    shops_error = all_bookmarks['year']
+#     year = all_bookmarks['year']
+#     make = all_bookmarks['year']
+#     model = all_bookmarks['year']
+#     recall_error = all_bookmarks['year']
+#     photo_error = all_bookmarks['year']
+#     car_recalls = all_bookmarks['year'] 
+#     car_photos = all_bookmarks['year']
+#     car_videos = all_bookmarks['year']
+#     car_shops = all_bookmarks['year']
+#     video_error = all_bookmarks['year']
+#     shops_error = all_bookmarks['year']
 
-    return render_template('car_recalls.html', year=year,make=make,model=model, recall_error=recall_error, 
-                           photo_error=photo_error, car_recalls=car_recalls, car_photos=car_photos, car_videos=car_videos, 
-                           car_shops=car_shops, video_error=video_error , shops_error=shops_error )
+#     return render_template('car_recalls.html', year=year,make=make,model=model, recall_error=recall_error, 
+#                            photo_error=photo_error, car_recalls=car_recalls, car_photos=car_photos, car_videos=car_videos, 
+#                            car_shops=car_shops, video_error=video_error , shops_error=shops_error )
 
 
 @app.route('/save_top_recall', methods=['POST'])
@@ -63,15 +63,8 @@ def save_bookmark():
     top_recall_data = request.form.to_dict()
     print(top_recall_data)
     Car_Recall.save_recall(top_recall_data)
-    return
-
-
-@app.route('/view_bookmarks')
-def view_bookmarks():
     all_bookmarks = Car_Recall.get_recalls()
     return render_template('bookmarks.html', bookmarks=all_bookmarks)
-
-
 
 
 
