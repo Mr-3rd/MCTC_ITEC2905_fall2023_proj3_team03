@@ -37,25 +37,30 @@ class Car_Recall(Model):
         for bookmark in bookmarks:
             return {
                 # return car
-                {'year': bookmark['year']},
-                {},
-                {},
+                {'year': bookmark.year},
+                {'make': bookmark.make},
+                {'model': bookmark.model},
                 # return photo
-                {},
-                {},
-                {},
+                {'photo_title': bookmark.photo_title},
+                {'link': bookmark.photo_link},
+                {'photo_error': bookmark.photo_error},
                 # return recall
-                {},
-                {},
-                {},
+                {'date': bookmark.recall_date},
+                {'component': bookmark.recall_component},
+                {'summary': bookmark.recall_summary},
+                {'photo_error': bookmark.photo_error},
                 # return video
-                {},
-                {},
-                {},
+                {'video_title': bookmark.video_title},
+                {'embed': bookmark.embed},
+                {'video_error': bookmark.video_error},
                 # return shop
-                {},
-                {},
-                {},
+                {'url': bookmark.shop_url},
+                {'name': bookmark.shop_rating},
+                {'rating': bookmark.shop_rating},
+                {'address': bookmark.shop_street},
+                {'city': bookmark.shop_city},
+                {'state': bookmark.shop_state},
+                {'shops_error': bookmark.shop_error}
             }
 
 db.connect()
