@@ -6,7 +6,34 @@
 {% block content %}
 
 
-{{ bookmarks }}
+{% for bookmark in bookmarks %}
 
+    {% for recall in bookmark %}
+
+    <div class="bookmarked_recall">
+      
+        {{ recall.year }}   {{ recall.make }}   {{ recall.model }}
+
+        {{ recall.photo_title }}  {{ recall.photo_link }}  
+        {{ recall.photo_error }}
+
+        {{ recall.recall_date }}  {{ recall.recall_component }}
+        {{ recall.recall_Summary }}
+        {{ recall.recall_error }}
+        
+        {{ recall.video_title }}
+        {{ recall.video_embed }}
+        {{ recall.video_error }}
+
+        {{ recall.shop_url }}
+        {{ recall.shop_name }}  {{ recall.shop_rating }}
+        {{ recall.shop_address }} {{ recall.shop_city }}, {{ recall.shop_state }}
+        {{ recall.shop_error }}
+        
+    </div>
+
+    {% endfor %}
+
+{% endfor %}
 
 {% endblock %}
