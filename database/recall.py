@@ -89,7 +89,7 @@ class Car_Recall(Model):
                 {'video_error': bookmark.video_error},
                 # return shop
                 {'shop_url': bookmark.shop_url},
-                {'shop_name': bookmark.shop_rating},
+                {'shop_name': bookmark.shop_name},
                 {'shop_rating': bookmark.shop_rating},
                 {'shop_address': bookmark.shop_address},
                 {'shop_city': bookmark.shop_city},
