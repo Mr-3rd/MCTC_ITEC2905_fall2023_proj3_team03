@@ -37,27 +37,39 @@ class Car_Recall(Model):
         db.create_tables([Car_Recall])
 
     def save_recall(top_recall_dict):
+        db.connect()
 
-        data = {'year': '2012', 'make': 'Fiat', 'model': '500', 'photo_title': '2012 Fiat 500 Abarth', 
-                'photo_link': 'https://live.staticflickr.com/7207/6838497826_533da1c937_w.jpg', 'photo_error': 'None', 
-                'recall_date': '15/11/2019', 'recall_component': 'Power Train:Automatic Transmission:Lever And Linkage:Floor Shift', 
-                'recall_summary': 'Chrysler (fca us llc) is recalling certain 2012-2013 fiat 500 vehicles equipped with 6-speed automatic transmissions.  the shifter cable bushing may fail allowing the cable to detach from the transmission.', 
-                'recall_error': 'None', 'video_title': 'Easy Transmission Shift Cable Bushing Replacement: HOW TO ESCAPE', 
-                'video_embed': 'https://www.youtube.com/embed/G4V32X0XSxU', 'video_error': 'None', 
-                'shop_url': 'https://www.yelp.com/biz/fiat-of-minneapolis-minneapolis-4?adjust_creative=VFkkfbqQacs_VkhToIhzCw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=VFkkfbqQacs_VkhToIhzCw', 
-                'shop_name': 'FIAT of Minneapolis', 
-                'shop_rating': "({'name': 'FIAT of Minneapolis', 'url': 'https://www.yelp.com/biz/fiat-of-minneapolis-minneapolis-4?adjust_creative=VFkkfbqQacs_VkhToIhzCw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=VFkkfbqQacs_VkhToIhzCw', 'rating': 4.0, 'street_address': '1820 Quentin Ave', 'city': 'Minneapolis', 'state': 'MN'}, Undefined)", 'shop_address': '1820 Quentin Ave', 'shop_city': 'Minneapolis', 'shop_state': 'MN', 'shop_error': 'None'}
+        bookmark_recall = Car_Recall(
+            year=top_recall_dict['year'],
+            make=top_recall_dict['make'],
+            model=top_recall_dict['model'],
+            photo_title=top_recall_dict['photo_title'],
+            photo_link=top_recall_dict['photo_link'],
+            photo_error=top_recall_dict['photo_error'], 
+            recall_date=top_recall_dict['recall_date'],
+            recall_component=top_recall_dict['recall_component'],
+            recall_summary=top_recall_dict['recall_summary'],
+            recall_error=top_recall_dict['recall_error'],
+            video_title=top_recall_dict['video_title'],
+            video_embed=top_recall_dict['video_embed'],
+            video_error=top_recall_dict['video_error'],
+            shop_url=top_recall_dict['shop_url'],
+            shop_name=top_recall_dict['shop_name'],
+            shop_rating=top_recall_dict['shop_rating'], 
+            shop_address=top_recall_dict['shop_address'],
+            shop_city=top_recall_dict['shop_city'],
+            shop_state=top_recall_dict['shop_state'],
+            shop_error=top_recall_dict['shop_error']
+        )
 
-
-        #create db insert
-        return 'Data Stored'
+        bookmark_recall.save()
 
 
     def get_recalls():
         all_bookmarks = []
         bookmarks = Car_Recall.select()
         for bookmark in bookmarks:
-            all_bookmarks.append({
+            all_bookmarks.append([
                 # return car
                 {'year': bookmark.year},
                 {'make': bookmark.make},
@@ -73,17 +85,17 @@ class Car_Recall(Model):
                 {'photo_error': bookmark.photo_error},
                 # return video
                 {'video_title': bookmark.video_title},
-                {'embed': bookmark.embed},
+                {'embed': bookmark.video_embed},
                 {'video_error': bookmark.video_error},
                 # return shop
                 {'url': bookmark.shop_url},
                 {'name': bookmark.shop_rating},
                 {'rating': bookmark.shop_rating},
-                {'address': bookmark.shop_street},
+                {'address': bookmark.shop_address},
                 {'city': bookmark.shop_city},
                 {'state': bookmark.shop_state},
-                {'shops_error': bookmark.shop_error}
-            })
+                {'shops_error': bookmark.shop_error}]
+            )
 
         return all_bookmarks
 
