@@ -43,6 +43,11 @@ def save_bookmark():
     all_bookmarks = Car_Recall.get_recalls()
     return render_template('bookmarks.html', bookmarks=all_bookmarks)
 
+@app.route('/save_top_recall', methods=['GET'])
+def view_bookmark():
+    all_bookmarks = Car_Recall.get_recalls()
+    return render_template('bookmarks.html', bookmarks=all_bookmarks)
+
 
 
 if __name__ == '__main__':
