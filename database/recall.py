@@ -32,6 +32,15 @@ class Car_Recall(Model):
     class Meta:
         database = db
 
+    def create_db():
+        db.connect()
+        db.create_tables([Car_Recall])
+
+    def save_recall():
+        #create db insert
+        return 'Data Stored'
+
+
     def get_recalls():
         bookmarks = Car_Recall.select()
         for bookmark in bookmarks:
@@ -63,5 +72,3 @@ class Car_Recall(Model):
                 {'shops_error': bookmark.shop_error}
             }
 
-db.connect()
-db.create_tables([Car_Recall])
