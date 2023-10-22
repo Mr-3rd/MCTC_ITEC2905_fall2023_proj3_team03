@@ -36,15 +36,16 @@ class Car_Recall(Model):
         db.connect()
         db.create_tables([Car_Recall])
 
-    def save_recall():
+    def save_recall(top_recall_dict):
         #create db insert
         return 'Data Stored'
 
 
     def get_recalls():
+        all_bookmarks = []
         bookmarks = Car_Recall.select()
         for bookmark in bookmarks:
-            return {
+            all_bookmarks.append({
                 # return car
                 {'year': bookmark.year},
                 {'make': bookmark.make},
@@ -70,5 +71,7 @@ class Car_Recall(Model):
                 {'city': bookmark.shop_city},
                 {'state': bookmark.shop_state},
                 {'shops_error': bookmark.shop_error}
-            }
+            })
+
+        return all_bookmarks
 
