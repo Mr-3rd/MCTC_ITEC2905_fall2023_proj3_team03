@@ -63,6 +63,7 @@ def save_bookmark():
     top_recall_data = request.form.to_dict()
     print(top_recall_data)
     Car_Recall.save_recall(top_recall_data)
+    return
 
 
 @app.route('/view_bookmarks')
