@@ -19,8 +19,8 @@ def get_car_recall():
 
     # Convert into car model
     year = request.args.get('year')
-    make = request.args.get('make')
-    model = request.args.get('model')
+    make = request.args.get('make').title()
+    model = request.args.get('model').title()
 
     recall_error, car_recalls = car_recall_api.get_car_recall(year, make, model)
     photo_error, car_photos = photo_api.get_car_images(year, make, model)
