@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block h1 %}Welcome to your Book Marked Recalls{% endblock %}
+
+
+{% block content %}
+
+
+
+ 
+
+    <div>
+        <ol>
+            {% for recall in bookmarks %}
+            <li>
+            <h4>{{ recall.year }} {{ recall.make }} {{ recall.model }}</h4>
+                
+                    {% if recall.photo_error != None %}
+                        <p>{{ recall.photo_title }}</p>
+                        <p>{{ recall.photo_link }}</p>
+                    {% else %}  
+                        <P>{{ recall.photo_error }}</p>
+                    {% endif %}
+
+                    {% if recall.recall_error != None %}
+                        <p>{{ recall.recall_date }}  {{ recall.recall_component }}</p>
+                        <p>{{ recall.recall_summary }}</p>
+                    {% else %}
+                        <p>{{ recall.recall_error }}</p>
+                    {% endif %}
+                    
+                    {% if recall.video_error != None %}
+                        <p>{{ recall.video_title }}</p>
+                        <p>{{ recall.video_embed }}</p>
+                    {% else %}
+                        <p>{{ recall.video_error }}</p>
+                    {% endif %}
+
+                    {% if recall.video_error != None %}                    
+                        <p>{{ recall.shop_url }}</p>
+                        <p>{{ recall.shop_name }}  {{ recall.shop_rating }}</p>
+                        <p>{{ recall.shop_address }} {{ recall.shop_city }} {{ recall.shop_state }}</p>
+                    {% else %}
+                        <p>{{ recall.shop_error }}</p>
+                    {% endif %}
+
+            </li>            
+            {% endfor %}
+        </ol>
+    </div>
+
+
+{% endblock %}
