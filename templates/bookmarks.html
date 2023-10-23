@@ -6,34 +6,48 @@
 {% block content %}
 
 
-{% for bookmark in bookmarks %}
 
-    {% for recall in bookmark %}
+ 
 
-    <div class="bookmarked_recall">
-      
-        {{ recall.year }}   {{ recall.make }}   {{ recall.model }}
+    <div>
+        <ol>
+            {% for recall in bookmarks %}
+            <li>
+            <h4>{{ recall.year }} {{ recall.make }} {{ recall.model }}</h4>
+                
+                    {% if recall.photo_error != None %}
+                        {{ recall.photo_title }}
+                        {{ recall.photo_link }}
+                    {% else %}  
+                        {{ recall.photo_error }}
+                    {% endif %}
 
-        {{ recall.photo_title }}  {{ recall.photo_link }}  
-        {{ recall.photo_error }}
+                    {% if recall.recall_error != None %}
+                        {{ recall.recall_date }}  {{ recall.recall_component }}
+                        {{ recall.recall_summary }}
+                    {% else %}
+                        {{ recall.recall_error }}
+                    {% endif %}
+                    
+                    {% if recall.video_error != None %}
+                        {{ recall.video_title }}
+                        {{ recall.video_embed }}
+                    {% else %}
+                        {{ recall.video_error }}
+                    {% endif %}
 
-        {{ recall.recall_date }}  {{ recall.recall_component }}
-        {{ recall.recall_summary }}
-        {{ recall.recall_error }}
-        
-        {{ recall.video_title }}
-        {{ recall.video_embed }}
-        {{ recall.video_error }}
+                    {% if recall.video_error != None %}                    
+                        {{ recall.shop_url }}
+                        {{ recall.shop_name }}  {{ recall.shop_rating }}
+                        {{ recall.shop_address }} {{ recall.shop_city }} {{ recall.shop_state }}
+                    {% else %}
+                        {{ recall.shop_error }}
+                    {% endif %}
 
-        {{ recall.shop_url }}
-        {{ recall.shop_name }}  {{ recall.shop_rating }}
-        {{ recall.shop_address }} {{ recall.shop_city }} {{ recall.shop_state }}
-        {{ recall.shop_error }}
-        
+            </li>            
+            {% endfor %}
+        </ol>
     </div>
 
-    {% endfor %}
-
-{% endfor %}
 
 {% endblock %}

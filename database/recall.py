@@ -69,32 +69,31 @@ class Car_Recall(Model):
         all_bookmarks = []
         bookmarks = Car_Recall.select()
         for bookmark in bookmarks:
-            all_bookmarks.append([
+            all_bookmarks.append(
                 # return car
-                {'year': bookmark.year},
-                {'make': bookmark.make},
-                {'model': bookmark.model},
+                {'year': bookmark.year, 'make': bookmark.make,
+                'model': bookmark.model,
                 # return photo
-                {'photo_title': bookmark.photo_title},
-                {'photo_link': bookmark.photo_link},
-                {'photo_error': bookmark.photo_error},
+                'photo_title': bookmark.photo_title,
+                'photo_link': bookmark.photo_link,
+                'photo_error': bookmark.photo_error,
                 # return recall
-                {'recall_date': bookmark.recall_date},
-                {'recall_component': bookmark.recall_component},
-                {'recall_summary': bookmark.recall_summary},
-                {'recall_error': bookmark.recall_error},
+                'recall_date': bookmark.recall_date,
+                'recall_component': bookmark.recall_component,
+                'recall_summary': bookmark.recall_summary,
+                'recall_error': bookmark.recall_error,
                 # return video
-                {'video_title': bookmark.video_title},
-                {'video_embed': bookmark.video_embed},
-                {'video_error': bookmark.video_error},
+                'video_title': bookmark.video_title,
+                'video_embed': bookmark.video_embed,
+                'video_error': bookmark.video_error,
                 # return shop
-                {'shop_url': bookmark.shop_url},
-                {'shop_name': bookmark.shop_name},
-                {'shop_rating': bookmark.shop_rating},
-                {'shop_address': bookmark.shop_address},
-                {'shop_city': bookmark.shop_city},
-                {'shop_state': bookmark.shop_state},
-                {'shop_error': bookmark.shop_error}]
+                'shop_url': bookmark.shop_url,
+                'shop_name': bookmark.shop_name,
+                'shop_rating': bookmark.shop_rating,
+                'shop_address': bookmark.shop_address,
+                'shop_city': bookmark.shop_city,
+                'shop_state': bookmark.shop_state,
+                'shop_error': bookmark.shop_error}
             )
 
         return all_bookmarks
