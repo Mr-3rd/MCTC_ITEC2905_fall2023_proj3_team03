@@ -16,32 +16,32 @@
             <h4>{{ recall.year }} {{ recall.make }} {{ recall.model }}</h4>
                 
                     {% if recall.photo_error != None %}
-                        {{ recall.photo_title }}
-                        {{ recall.photo_link }}
+                        <p>{{ recall.photo_title }}</p>
+                        <p>{{ recall.photo_link }}</p>
                     {% else %}  
-                        {{ recall.photo_error }}
+                        <P>{{ recall.photo_error }}</p>
                     {% endif %}
 
                     {% if recall.recall_error != None %}
-                        {{ recall.recall_date }}  {{ recall.recall_component }}
-                        {{ recall.recall_summary }}
+                        <p>{{ recall.recall_date }}  {{ recall.recall_component }}</p>
+                        <p>{{ recall.recall_summary }}</p>
                     {% else %}
-                        {{ recall.recall_error }}
+                        <p>{{ recall.recall_error }}</p>
                     {% endif %}
                     
                     {% if recall.video_error != None %}
-                        {{ recall.video_title }}
-                        {{ recall.video_embed }}
+                        <p>{{ recall.video_title }}</p>
+                        <p>{{ recall.video_embed }}</p>
                     {% else %}
-                        {{ recall.video_error }}
+                        <p>{{ recall.video_error }}</p>
                     {% endif %}
 
                     {% if recall.video_error != None %}                    
-                        {{ recall.shop_url }}
-                        {{ recall.shop_name }}  {{ recall.shop_rating }}
-                        {{ recall.shop_address }} {{ recall.shop_city }} {{ recall.shop_state }}
+                        <p>{{ recall.shop_url }}</p>
+                        <p>{{ recall.shop_name }}  {{ recall.shop_rating }}</p>
+                        <p>{{ recall.shop_address }} {{ recall.shop_city }} {{ recall.shop_state }}</p>
                     {% else %}
-                        {{ recall.shop_error }}
+                        <p>{{ recall.shop_error }}</p>
                     {% endif %}
 
             </li>            
