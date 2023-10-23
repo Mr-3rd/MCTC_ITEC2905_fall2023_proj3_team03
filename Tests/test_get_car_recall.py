@@ -37,11 +37,8 @@ class GetCarRecallTest(TestCase):
     def test_three_spaces_as_inputs(self):
         expected = ('No recalls Found for this vehicle', None)
         self.assertEqual(expected, car_recall_api.get_car_recall(' ', ' ', ' '))
-        
-    # def test_no_internet_connection(self):
-    #     expected = ('A catastrophic error has occurred', None)
-    #     self.assertEqual(expected, car_recall_api.get_car_recall(2012, 'fiat', '500'))
-    
+
+
 
 if __name__ == '__main__':
     unittest.main()
