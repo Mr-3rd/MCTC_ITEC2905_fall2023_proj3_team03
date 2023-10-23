@@ -67,3 +67,8 @@ def get_car_recall(year, make, model):
          error = 'A catastrophic error has occurred'
          logging.exception(error)
          return error, None
+    
+
+# car = get_car_recall(2017, 'Toyota', 'Corolla')
+# print(car)
+
