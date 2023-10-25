@@ -1,67 +1,32 @@
-"""
+'''
+Test car photos
 
-"""
+'''
+import unittest
+from unittest import TestCase
 
-import photo_api
-
-def display_car(car):
-
-    if type(car) == str:
-        print(car)
-    elif type(car) == list:
-        for photo in car:
-            print(photo['title'])
-            print(photo['link'])        
-    else:
-        print('serious error occurred')
-
-color = ''
-year = '2012'
-make = 'Fiat'
-model = '500'
-
-car = {'year': year, 'make': make, 'model': model}
-
-fiat = photo_api.get_car_images(car)
-print(fiat)
-
-display_car(fiat)
-
-color = ''
-year = '2017'
-make = 'Toyota'
-model = 'Camry'
-
-car = {'year': year, 'make': make, 'model': model}
-
-camry = photo_api.get_car_images(car)
-print(camry)
+import sys
+sys.path.append('..')
+from apis import photo_api
 
 
-display_car(camry)
+class GetCarRecallTest(TestCase):
 
-color = ''
-year = '1965'
-make = 'Ford'
-model = 'Mustang'
+    def test_valid_12_Fiat_500(self): 
+        expected = (None, [{'title': '2012 Fiat 500 Abarth', 
+                            'link': 'https://live.staticflickr.com/7207/6838497826_533da1c937_w.jpg'}, 
+                            {'title': '2012 Fiat 500', 
+                             'link': 'https://live.staticflickr.com/5084/5215566906_3860b05920_w.jpg'}, 
+                             {'title': '2012 Fiat 500 CCW LM16', 
+                              'link': 'https://live.staticflickr.com/8290/7746429344_57cb10aaba_w.jpg'}])
+        
+        self.assertEqual(expected, photo_api.get_car_images('2012', 'fiat', '500'))
 
-car = {'year': year, 'make': make, 'model': model}
+    def test_empty_input(self):
+        expected = ('No photos found for this vehicle', None)
+        self.assertEqual(expected, photo_api.get_car_images('', '', ''))
 
-mustang = photo_api.get_car_images(car)
 
-print(mustang)
 
-display_car(mustang)
-
-color = ''
-year = '1900'
-make = 'Tilken'
-model = 'Mustoong'
-
-car = {'year': year, 'make': make, 'model': model}
-
-mustoong = photo_api.get_car_images(car)
-
-print(mustoong)
-
-display_car(mustoong)
+if __name__ == '__main__':
+    unittest.main()

@@ -1,6 +1,8 @@
 """
-This API function call will connect to the NHTSA API and return up to 4 recalls that a 
-car has.
+This API call will return json data based on the year, make and model of a car.
+The json data will include all documented recalls associated with the user's car of choice.
+
+datetime reference for sorting: https://www.geeksforgeeks.org/python-sort-list-of-dates-given-as-strings/
 
 """
 
@@ -11,6 +13,8 @@ import logging
 
 @cache
 def get_car_recall(year, make, model):
+    """This API service takes three parameters that is entered by a user using a form which makes 
+    an API call to NHTSA that returns a json object based on the year, make and model of a car."""
     
     car = {'year': year, 'make': make, 'model': model }
 
@@ -35,11 +39,12 @@ def get_car_recall(year, make, model):
 
           logging.info(f'Recalls Found: {nhtsa_data["Count"]}')
 
-          recall_results['results'] = []
+          recall_results['results'] = [] # blank list will store only the needed data from the nhtsa recall in dictionary objects
 
+          # nhtsa data is sorted by date in descending order, this will improve user experience when data is displayed
           sorted_recalls = sorted(nhtsa_data['results'], key=lambda x: datetime.strptime(x['ReportReceivedDate'], '%d/%m/%Y'), reverse=True)
 
-          for recall in sorted_recalls:
+          for recall in sorted_recalls: # append ReportReceivedDate, Component and Summary data from nhtsa api call data
                recall_results['results'].append({'ReportReceivedDate': recall['ReportReceivedDate'], 'Component': recall['Component'].title(),
                                    'Summary': recall['Summary'].capitalize()})
 
@@ -49,7 +54,7 @@ def get_car_recall(year, make, model):
                error = "No recalls Found for this vehicle"
                return error, None
     
-    # explicit error handling
+    # error handling block for call returns an error message as a string and logs the error to the system
     except requests.HTTPError as HTerror:
          error = 'An error has occurred: ' + str(nhtsa_response.status_code)
          logging.exception(HTerror)
@@ -62,4 +67,8 @@ def get_car_recall(year, make, model):
          error = 'A catastrophic error has occurred'
          logging.exception(error)
          return error, None
+    
+
+# car = get_car_recall(2017, 'Toyota', 'Corolla')
+# print(car)
 

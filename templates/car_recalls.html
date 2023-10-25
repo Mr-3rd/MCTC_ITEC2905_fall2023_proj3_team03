@@ -6,6 +6,42 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 
 {% block content %}
 
+{% if car_recalls != None %}
+
+<div id="bookmark">
+    <h2>Press the save button to save the Top Result</h2>
+    <form method="POST" action="/save_top_recall">
+        <!-- save the car -->
+        <input type="hidden" name="year" value="{{ year }}">
+        <input type="hidden" name="make" value="{{ make }}">
+        <input type="hidden" name="model" value="{{ model }}">
+        <!-- Save the photo -->
+        <input type="hidden" name="photo_title" value="{{ car_photos[0].title }}">
+        <input type="hidden" name="photo_link" value="{{ car_photos[0].link }}">
+        <input type="hidden" name="photo_error" value="{{ photo_error }}">
+        <!-- Save the recall -->
+        <input type="hidden" name="recall_date" value="{{ car_recalls.results[0].ReportReceivedDate }}">
+        <input type="hidden" name="recall_component" value="{{ car_recalls.results[0].Component }}">
+        <input type="hidden" name="recall_summary" value="{{ car_recalls.results[0].Summary }}">
+        <input type="hidden" name="recall_error" value="{{ recall_error }}">
+        <!-- Save the video -->
+        <input type="hidden" name="video_title" value="{{ car_videos[0].title }}">
+        <input type="hidden" name="video_embed" value="{{ car_videos[0].embed }}">
+        <input type="hidden" name="video_error" value="{{ video_error }}">
+        <!-- Save the shop -->
+        <input type="hidden" name="shop_url" value="{{ car_shops[0].url }}">
+        <input type="hidden" name="shop_name" value="{{ car_shops[0].name }}">
+        <input type="hidden" name="shop_rating" value="{{ car_shops[0].rating }}">
+        <input type="hidden" name="shop_address" value="{{ car_shops[0].street_address }}">
+        <input type="hidden" name="shop_city" value="{{ car_shops[0].city }}">
+        <input type="hidden" name="shop_state" value="{{ car_shops[0].state }}">
+        <input type="hidden" name="shop_error" value="{{ shops_error }}">
+
+        <button type="submit">Save Current Recall!</button>
+    </form>
+</div>
+
+{% endif %}
 
 {% if car_photos %}
 <div class="recall_photo">
@@ -25,11 +61,11 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 <div class="recall_info">
         <ul>
         {% for recall in car_recalls.results %}
-            <li>Date of Recall (day/month/year): {{ recall.ReportReceivedDate }} 
+            <li><b>Date of Recall (day/month/year):</b> {{ recall.ReportReceivedDate }} 
                 <br> 
-                Affected Component: {{ recall.Component  }}
+                <b>Affected Component:</b> {{ recall.Component  }}
                 <br>
-                Summary of recall: {{ recall.Summary }}
+                <b>Summary of recall:</b> {{ recall.Summary }}
             </li>
         {% endfor %}
         </ul>
@@ -59,11 +95,11 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 <div class="recall_shops">
     <ul>
     {% for shop in car_shops %}
-        <li>Business Name: <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
+        <li><b>Business Name:</b> <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
             <br> 
-            Rating: {{ shop.rating  }}
+            <b>Rating:</b> {{ shop.rating  }}
             <br>
-            Location: {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
+            <b>Location:</b> {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
         </li>
     {% endfor %}
     </ul>
