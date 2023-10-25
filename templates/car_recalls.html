@@ -61,11 +61,11 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 <div class="recall_info">
         <ul>
         {% for recall in car_recalls.results %}
-            <li>Date of Recall (day/month/year): {{ recall.ReportReceivedDate }} 
+            <li><b>Date of Recall (day/month/year):</b> {{ recall.ReportReceivedDate }} 
                 <br> 
-                Affected Component: {{ recall.Component  }}
+                <b>Affected Component:</b> {{ recall.Component  }}
                 <br>
-                Summary of recall: {{ recall.Summary }}
+                <b>Summary of recall:</b> {{ recall.Summary }}
             </li>
         {% endfor %}
         </ul>
@@ -95,11 +95,11 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 <div class="recall_shops">
     <ul>
     {% for shop in car_shops %}
-        <li>Business Name: <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
+        <li><b>Business Name:</b> <a href="{{ shop.url }}" target="_blank">{{ shop.name }}</a> 
             <br> 
-            Rating: {{ shop.rating  }}
+            <b>Rating:</b> {{ shop.rating  }}
             <br>
-            Location: {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
+            <b>Location:</b> {{ shop.street_address }} {{ shop.city }}, {{ shop.state }}
         </li>
     {% endfor %}
     </ul>
