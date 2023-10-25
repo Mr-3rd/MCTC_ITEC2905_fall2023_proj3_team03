@@ -26,6 +26,15 @@ class GetCarRecallTest(TestCase):
         expected = ('Car recall videos not found', None)
         self.assertEqual(expected, video_api.get_car_videos('', '', ''))
 
+    def test_crazy_car(self):
+        year = '1900'
+        make = 'Tilken'
+        model = 'Mustoong'
+
+        expected = ('No photos found for this vehicle', None)
+        self.assertEqual(expected, video_api.get_car_videos(year, make, model))
+
+
 
 
 
