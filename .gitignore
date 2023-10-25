@@ -4,5 +4,6 @@ venv
 .vscode
 testing_results
 __pycache__
+shop_x_t.py
 test_v_x.py
 test_p_x.py
