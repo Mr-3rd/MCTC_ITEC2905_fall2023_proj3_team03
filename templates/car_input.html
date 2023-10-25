@@ -2,13 +2,13 @@
 
 
 {% block h1 %}
-Welcome to the Automotive Solution Tool!
+Recall:360 -the Automotive Recall Solution tool!
 <img class='home_icon' src="{{ url_for('static', filename='car.jpg') }}" alt="picture of a car">
 {% endblock %}
 
 
 {% block content %}
-<h3>Please fill out the boxes below to search for your desired car:</h3>
+<h3>Please enter the Year, Make, and Model to search for your car's recalls:</h3>
 
 <div class="car_form">
     <form method="GET" action="get_car">
