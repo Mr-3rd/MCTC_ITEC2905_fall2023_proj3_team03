@@ -6,6 +6,7 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
 
 {% block content %}
 
+{% if car_recalls != None %}
 
 <div id="bookmark">
     <h2>Press the save button to save the Top Result</h2>
@@ -40,6 +41,7 @@ Recall Solution for {{ year }} {{ make }} {{ model }}
     </form>
 </div>
 
+{% endif %}
 
 {% if car_photos %}
 <div class="recall_photo">
