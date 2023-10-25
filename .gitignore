@@ -4,3 +4,4 @@ venv
 .vscode
 testing_results
 __pycache__
+test_v_x.py
